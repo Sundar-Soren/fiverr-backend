@@ -10,11 +10,11 @@ import reviewRoute from "./routes/review.route.js";
 import authRoute from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
+// import path from "path";
+// import { fileURLToPath } from "url";
+// const __filename = fileURLToPath(import.meta.url);
 
-const __dirname = path.dirname(__filename);
+// const __dirname = path.dirname(__filename);
 
 const app = express();
 dotenv.config();
@@ -32,14 +32,14 @@ const connect = async () => {
 // app.use(cors({ origin: "*", credentials: true }));
 app.use(
   cors({
-    origin: ["http://localhost:3000","https://fiverr-backend.vercel.app/"],
+    origin: ["http://localhost:3000", "https://fiverr-backend.vercel.app/"],
     credentials: true,
   })
 );
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
@@ -48,11 +48,11 @@ app.use("/api/orders", orderRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/reviews", reviewRoute);
-// app.get("/", (req, res) => {
-//   res.json({ message: "Hey there" });
-// });
+app.get("/", (req, res) => {
+  res.json({ message: "Hey there" });
+});
 
-app.get("/*", express.static(path.join(__dirname, "build")));
+// app.get("/*", express.static(path.join(__dirname, "build")));
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
