@@ -48,9 +48,9 @@ app.use("/api/orders", orderRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/reviews", reviewRoute);
-// app.get("/", (req, res) => {
-//   res.json({ message: "Hey there" });
-// });
+app.get("/", (req, res) => {
+  res.json({ message: "Hey there" });
+});
 
 // app.get("/*", express.static(path.join(__dirname, "build")));
 
